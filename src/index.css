@@ -5,14 +5,7 @@
 @tailwind utilities;
 
 body {
-  background-color: #444df789;
-  opacity: 1;
-  background-image: radial-gradient(#fff 1.1px, transparent 1.1px),
-    radial-gradient(#fff 1.1px, #444df789 1.1px);
-  background-size: 44px 44px;
-  background-position: 0 0, 22px 22px;
   font-family: "Mulish", sans-serif;
-  color: #000;
 }
 
 .permanent-marker {
