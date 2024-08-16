@@ -1,6 +1,8 @@
 import { FiFacebook, FiGithub, FiLinkedin, FiTwitter } from "react-icons/fi";
+import { useNavigate } from "react-router-dom";
 
 export default function Footer() {
+  const navigate = useNavigate();
   return (
     <footer className="bg-primary-dark px-5 md:px-10 text-secondary py-12">
       <div className="container mx-auto grid grid-cols-1 md:grid-cols-4 gap-8">
@@ -44,8 +46,8 @@ export default function Footer() {
         <div>
           <h2 className="text-tertiary font-bold mb-4">Get In Touch</h2>
           <a
-            href="mailto:info@aiagentelite.com"
-            className="inline-block bg-tertiary text-primary-dark font-semibold py-3 px-6 rounded-lg shadow-md hover:bg-tertiary-dark hover:text-secondary transition duration-300"
+            onClick={() => navigate("/contactus")}
+            className="inline-block bg-tertiary cursor-pointer text-primary-dark font-semibold py-3 px-6 rounded-lg shadow-md hover:bg-tertiary-dark hover:text-secondary transition duration-300"
           >
             Contact Us
           </a>
