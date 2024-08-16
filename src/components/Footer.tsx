@@ -1,3 +1,5 @@
+import { FiFacebook, FiGithub, FiLinkedin, FiTwitter } from "react-icons/fi";
+
 export default function Footer() {
   return (
     <footer className="bg-primary-dark px-5 md:px-10 text-secondary py-12">
@@ -19,24 +21,24 @@ export default function Footer() {
           <p>Email: info@aiagentelite.com</p>
         </div>
 
-        {/* Follow Us
+        {/* Follow Us */}
         <div>
           <h2 className="text-tertiary font-bold mb-4">Follow Us</h2>
           <div className="flex space-x-4">
             <a href="#" className="hover:text-tertiary">
-              <i className="fab fa-facebook-f"></i>
+              <FiFacebook />
             </a>
             <a href="#" className="hover:text-tertiary">
-              <i className="fab fa-twitter"></i>
+              <FiTwitter />
             </a>
             <a href="#" className="hover:text-tertiary">
-              <i className="fab fa-linkedin-in"></i>
+              <FiLinkedin />
             </a>
             <a href="#" className="hover:text-tertiary">
-              <i className="fab fa-github"></i>
+              <FiGithub />
             </a>
           </div>
-        </div> */}
+        </div>
 
         {/* Contact Us CTA */}
         <div>
