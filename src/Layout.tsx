@@ -1,4 +1,5 @@
 import { Outlet, useNavigate } from "react-router-dom";
+import Footer from "./components/Footer";
 
 export default function Layout() {
   const navigate = useNavigate();
@@ -18,8 +19,9 @@ export default function Layout() {
           Contact Us
         </p>
       </div>
-      <div className="flex-grow overflow-y-auto">
+      <div className="flex-grow overflow-y-auto flex flex-col gap-[48px]">
         <Outlet />
+        <Footer />
       </div>
     </div>
   );
