@@ -18,9 +18,9 @@ export default function ContactUs() {
     e.preventDefault();
 
     // Replace these with your actual EmailJS parameters
-    const serviceID = "YOUR_SERVICE_ID";
-    const templateID = "YOUR_TEMPLATE_ID";
-    const userID = "YOUR_USER_ID";
+    const serviceID = "service_kg7jur7";
+    const templateID = "template_hujdmj1";
+    const userID = "Gr-yC-yYN7UlhLWgw";
 
     emailjs
       .send(serviceID, templateID, formData, userID)
