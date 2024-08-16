@@ -24,7 +24,7 @@ export default function Agents() {
       </div>
       <div className="flex flex-col py-10 px-5 md:px-10 justify-center items-center w-full gap-[48px] bg-primary-dark">
         <p className="text-[32px] font-bold text-tertiary">Our Other Agents</p>
-        <div className="grid gap-[40px] w-full md:w-auto justify-center items-center grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4">
+        <div className="grid gap-[40px] w-full md:w-auto justify-center items-center grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-3">
           {Array.from({ length: 10 }, (_, id) => (
             <AgentBox key={id} />
           ))}
