@@ -31,7 +31,7 @@ export default function AgentBox({ data }: AgentBoxProps) {
       {/* Bottom Section with CTA */}
       <div className="mt-6">
         <button
-          onClick={() => navigate(`/agent/${data.id}`)}
+          onClick={() => navigate(`/agents/${data.id}`)}
           className="bg-primary-light text-white font-semibold py-2 px-8 rounded-full shadow-md hover:bg-primary-dark transition duration-300"
         >
           Try it Now

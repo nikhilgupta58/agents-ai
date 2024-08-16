@@ -17,24 +17,61 @@ export default function Agents() {
           productivity, and unlock new possibilities in automation.
         </p>
       </div>
-      {isFeaturedData.length > 0 && (
-        <div className="flex px-5 md:px-10 flex-col justify-center items-center w-full gap-[48px]">
-          <p className="text-[32px] font-bold text-tertiary">Featured Agents</p>
-          <div className="flex flex-wrap w-full gap-[40px] justify-center items-center">
-            {isFeaturedData.map((row, id) => {
-              return <AgentBox data={row} key={id} />;
-            })}
+      {data?.length === 0 ? (
+        <div className="flex justify-center items-center">
+          <div className="text-center justify-center flex flex-col items-center gap-3">
+            <div className="loader mb-4"></div>{" "}
+            <svg
+              className="animate-spin h-8 w-8 text-blue-500"
+              xmlns="http://www.w3.org/2000/svg"
+              fill="none"
+              viewBox="0 0 24 24"
+            >
+              <circle
+                className="opacity-25"
+                cx="12"
+                cy="12"
+                r="10"
+                stroke="currentColor"
+                strokeWidth="4"
+              ></circle>
+              <path
+                className="opacity-75"
+                fill="currentColor"
+                d="M4 12a8 8 0 018-8v8H4z"
+              ></path>
+            </svg>
+            <p className="text-lg font-semibold text-secondary">
+              We are getting the data, please wait...
+            </p>
           </div>
         </div>
+      ) : (
+        <>
+          {isFeaturedData.length > 0 && (
+            <div className="flex px-5 md:px-10 flex-col justify-center items-center w-full gap-[48px]">
+              <p className="text-[32px] font-bold text-tertiary">
+                Featured Agents
+              </p>
+              <div className="flex flex-wrap w-full gap-[40px] justify-center items-center">
+                {isFeaturedData.map((row, id) => {
+                  return <AgentBox data={row} key={id} />;
+                })}
+              </div>
+            </div>
+          )}
+          <div className="flex flex-col py-10 px-5 md:px-10 justify-center items-center w-full gap-[48px] bg-primary-dark">
+            <p className="text-[32px] font-bold text-tertiary">
+              Our Other Agents
+            </p>
+            <div className="grid gap-[40px] w-full md:w-auto justify-center items-center grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-3">
+              {data.map((row, id) => {
+                return <AgentBox data={row} key={id} />;
+              })}
+            </div>
+          </div>
+        </>
       )}
-      <div className="flex flex-col py-10 px-5 md:px-10 justify-center items-center w-full gap-[48px] bg-primary-dark">
-        <p className="text-[32px] font-bold text-tertiary">Our Other Agents</p>
-        <div className="grid gap-[40px] w-full md:w-auto justify-center items-center grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-3">
-          {data.map((row, id) => {
-            return <AgentBox data={row} key={id} />;
-          })}
-        </div>
-      </div>
       <Testimonial />
     </div>
   );
