@@ -1,6 +1,8 @@
 import { useRef } from "react";
+import useTestimonials from "../hooks/useTestimonials";
 
 export default function Testimonial() {
+  const { data } = useTestimonials();
   const scrollContainerRef = useRef<any>(null);
 
   const scrollLeft = () => {
@@ -14,6 +16,8 @@ export default function Testimonial() {
       scrollContainerRef.current.scrollBy({ left: 350, behavior: "smooth" });
     }
   };
+
+  if (data?.length === 0) return null;
 
   return (
     <div className="flex flex-col justify-center items-center w-full gap-[48px] py-8">
@@ -49,18 +53,17 @@ export default function Testimonial() {
           ref={scrollContainerRef}
           className="w-full overflow-x-auto scrollbar-hide scroll-smooth snap-x snap-mandatory px-5 md:px-10"
         >
-          <div className="flex gap-[40px] w-max px-4 md:px-0">
-            {Array.from({ length: 10 }, (_, id) => (
+          <div className="flex gap-[40px] justify-center w-full px-4 md:px-0">
+            {data?.map((row, id) => (
               <div
                 key={id}
                 className="min-w-[350px] max-w-[350px] bg-secondary text-primary-dark p-8 rounded-xl shadow-2xl snap-center"
               >
                 <p className="text-tertiary-dark mb-4 text-xl font-semibold">
-                  Client #{id + 1}
+                  {row.author}
                 </p>
                 <p className="text-primary-light leading-relaxed">
-                  "Lorem ipsum dolor sit amet, consectetur adipiscing elit.
-                  Integer posuere erat a ante."
+                  {row.description}
                 </p>
               </div>
             ))}
