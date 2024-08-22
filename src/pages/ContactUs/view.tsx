@@ -13,6 +13,7 @@ export default function ContactUs({
     email: "",
     message: "",
     agentName,
+    url: window.location.href,
   });
 
   const [isSubmitted, setIsSubmitted] = useState(false);
@@ -107,28 +108,6 @@ export default function ContactUs({
                 required
               ></textarea>
             </div>
-
-            {agentName && (
-              <div className="mb-6">
-                <label
-                  htmlFor="name"
-                  className="block text-sm font-medium text-gray-700 mb-2"
-                >
-                  Agent Name
-                </label>
-                <input
-                  type="text"
-                  name="name"
-                  id="name"
-                  readOnly
-                  value={formData.agentName}
-                  onChange={handleChange}
-                  className="block w-full border cursor-not-allowed text-black border-gray-300 rounded-md shadow-sm p-2 focus:ring-primary-light focus:border-primary-light"
-                  placeholder="John Doe"
-                  required
-                />
-              </div>
-            )}
 
             <div className="flex justify-center">
               <button
