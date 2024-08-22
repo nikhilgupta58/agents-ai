@@ -26,7 +26,7 @@ export default function IndivisualAgent() {
   return (
     <>
       <Helmet>
-        <title>{data?.title}</title>
+        <title>AI AGENTELITE: {data?.title}</title>
         <meta name="description" content={data?.description} />
       </Helmet>
       <div className="max-w-5xl mx-auto py-12 px-6 md:px-12">
@@ -93,7 +93,7 @@ export default function IndivisualAgent() {
           </button>
         </div>
         <ContactUs
-          className="md:p-0 p-0 min-h-fit mt-12"
+          className="md:p-0 p-0 min-h-0 mt-0"
           agentName={data?.name}
         />
       </div>
