@@ -36,9 +36,9 @@ export default function IndivisualAgent() {
               {data.title}
             </h1>
             <p className="text-lg text-secondary-light mt-2">{data.name}</p>
-            <p className="text-md text-secondary-light mt-4">
+            <h2 className="text-md text-secondary-light mt-4">
               {data.description}
-            </p>
+            </h2>
             <div className="mt-4">
               <span className="text-sm font-medium text-tertiary-dark">
                 Categories:{" "}
@@ -87,9 +87,10 @@ export default function IndivisualAgent() {
             Back to Agents
           </button>
         </div>
-      </div>
-      <div className="w-full">
-        <ContactUs agentName={data?.name} />
+        <ContactUs
+          className="md:p-0 p-0 min-h-fit mt-12"
+          agentName={data?.name}
+        />
       </div>
     </>
   );

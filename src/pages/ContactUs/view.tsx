@@ -1,7 +1,13 @@
 import emailjs from "emailjs-com";
 import { useState } from "react";
 
-export default function ContactUs({ agentName = "" }: { agentName?: string }) {
+export default function ContactUs({
+  agentName = "",
+  className = "",
+}: {
+  agentName?: string;
+  className?: string;
+}) {
   const [formData, setFormData] = useState({
     name: "",
     email: "",
@@ -35,7 +41,9 @@ export default function ContactUs({ agentName = "" }: { agentName?: string }) {
   };
 
   return (
-    <div className="min-h-screen w-full bg-primary-dark flex items-center justify-center p-5 md:p-20">
+    <div
+      className={`min-h-screen w-full bg-transparent flex items-center justify-center p-5 md:p-20 ${className}`}
+    >
       <div className="bg-white rounded-lg shadow-lg p-8 md:p-12 max-w-lg w-full">
         <h2 className="text-3xl font-bold text-primary-dark mb-8">
           Contact Us
@@ -122,7 +130,7 @@ export default function ContactUs({ agentName = "" }: { agentName?: string }) {
               </div>
             )}
 
-            <div className="flex justify-end">
+            <div className="flex justify-center">
               <button
                 type="submit"
                 className="bg-primary-light text-white font-semibold py-2 px-6 rounded-lg shadow-md hover:bg-primary-dark transition duration-300"
