@@ -1,3 +1,4 @@
+import { Helmet } from "react-helmet-async";
 import ReactMarkdown from "react-markdown";
 import { useNavigate } from "react-router-dom";
 import Spinner from "../../components/Spinner";
@@ -24,6 +25,10 @@ export default function IndivisualAgent() {
 
   return (
     <>
+      <Helmet>
+        <title>{data?.title}</title>
+        <meta name="description" content={data?.description} />
+      </Helmet>
       <div className="max-w-5xl mx-auto py-12 px-6 md:px-12">
         <div className="flex flex-col md:flex-row items-center gap-8">
           <img
