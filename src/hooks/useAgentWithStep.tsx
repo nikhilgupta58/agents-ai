@@ -1,10 +1,11 @@
 import { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 import { supabase } from "../supabaseClient";
-import { IAgent } from "./useAgents";
+import { IAgent, Step } from "./useAgents";
 
 const useAgentWithStep = () => {
   const { id } = useParams<{ id: string }>();
+
   async function getAgent(agentId: string) {
     // Fetch the specific agent by ID
     const { data: agent, error: agentError } = await supabase
@@ -29,15 +30,22 @@ const useAgentWithStep = () => {
       return { agent, steps: null, error: stepsError.message };
     }
 
-    return { data: { ...agent, steps }, error: null };
+    // Sort the steps by step_order
+    const sortedSteps =
+      steps?.sort((a: Step, b: Step) => a.step_order - b.step_order) || [];
+
+    return { data: { ...agent, steps: sortedSteps }, error: null };
   }
 
-  const [agents, setAgents] = useState<IAgent | null>(null);
+  const [agent, setAgent] = useState<IAgent | null>(null);
+
   useEffect(() => {
-    id && getAgent(id).then((e: any) => setAgents(e?.data));
+    if (id) {
+      getAgent(id).then((result: any) => setAgent(result?.data));
+    }
   }, [id]);
 
-  return { data: agents };
+  return { data: agent };
 };
 
 export default useAgentWithStep;

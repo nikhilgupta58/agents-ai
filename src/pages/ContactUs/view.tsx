@@ -1,11 +1,12 @@
 import emailjs from "emailjs-com";
 import { useState } from "react";
 
-export default function ContactUs() {
+export default function ContactUs({ agentName = "" }: { agentName?: string }) {
   const [formData, setFormData] = useState({
     name: "",
     email: "",
     message: "",
+    agentName,
   });
 
   const [isSubmitted, setIsSubmitted] = useState(false);
@@ -34,7 +35,7 @@ export default function ContactUs() {
   };
 
   return (
-    <div className="min-h-screen bg-primary-dark flex items-center justify-center p-5 md:p-20">
+    <div className="min-h-screen w-full bg-primary-dark flex items-center justify-center p-5 md:p-20">
       <div className="bg-white rounded-lg shadow-lg p-8 md:p-12 max-w-lg w-full">
         <h2 className="text-3xl font-bold text-primary-dark mb-8">
           Contact Us
@@ -98,6 +99,28 @@ export default function ContactUs() {
                 required
               ></textarea>
             </div>
+
+            {agentName && (
+              <div className="mb-6">
+                <label
+                  htmlFor="name"
+                  className="block text-sm font-medium text-gray-700 mb-2"
+                >
+                  Agent Name
+                </label>
+                <input
+                  type="text"
+                  name="name"
+                  id="name"
+                  readOnly
+                  value={formData.agentName}
+                  onChange={handleChange}
+                  className="block w-full border cursor-not-allowed text-black border-gray-300 rounded-md shadow-sm p-2 focus:ring-primary-light focus:border-primary-light"
+                  placeholder="John Doe"
+                  required
+                />
+              </div>
+            )}
 
             <div className="flex justify-end">
               <button
