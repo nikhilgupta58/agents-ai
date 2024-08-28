@@ -9,6 +9,7 @@ export type Step = {
 };
 
 export interface IAgent {
+  demo_link?: string;
   id: string;
   name: string;
   title: string;

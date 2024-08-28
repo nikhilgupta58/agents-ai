@@ -1,7 +1,7 @@
 import { Helmet } from "react-helmet";
 import ReactMarkdown from "react-markdown";
 import { useNavigate, useSearchParams } from "react-router-dom";
-import Spinner from "../../components/Spinner";
+import Loading from "../../components/Loading";
 import { IAgent } from "../../hooks/useAgents";
 import useAgentWithStep from "../../hooks/useAgentWithStep";
 import ContactUs from "../ContactUs/view";
@@ -12,16 +12,7 @@ export default function IndivisualAgent() {
   const [searchParams] = useSearchParams();
   const queryValue = searchParams.get("name");
   if (!data) {
-    return (
-      <div className="flex justify-center items-center h-screen">
-        <div className="text-center justify-center flex flex-col items-center gap-3">
-          <Spinner />
-          <p className="text-lg font-semibold text-secondary">
-            We are getting the data, please wait...
-          </p>
-        </div>
-      </div>
-    );
+    return <Loading />;
   }
 
   return (
@@ -42,12 +33,16 @@ export default function IndivisualAgent() {
               <h1 className="text-3xl md:text-4xl font-bold text-secondary-dark">
                 {data.title}
               </h1>
-              <button
-                onClick={() => navigate(`demo?name=${queryValue}`)}
-                className="px-2 py-1 w-fit rounded-md bg-secondary-dark text-primary-dark hover:brightness-110 transition-all"
-              >
-                Try Now 🔗
-              </button>
+              {data?.demo_link && (
+                <button
+                  onClick={() =>
+                    navigate(`demo?name=${queryValue}&summary_count=10`)
+                  }
+                  className="px-2 py-1 w-fit rounded-md bg-secondary-dark text-primary-dark hover:brightness-110 transition-all"
+                >
+                  Try Now 🔗
+                </button>
+              )}
             </div>
             <p className="text-lg text-secondary-light mt-2">{data.name}</p>
             <h2 className="text-md text-secondary-light mt-4">
