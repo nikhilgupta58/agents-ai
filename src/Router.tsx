@@ -9,11 +9,13 @@ import Layout from "./Layout";
 import Agents from "./pages/Agents/view";
 import ContactUs from "./pages/ContactUs/view";
 import IndivisualAgent from "./pages/IndivisualAgent/view";
+import Demo from "./pages/Demo/view";
 
 const router = () => {
   const routes = [
     { path: "agents", element: <Agents /> },
     { path: "/agents/:id", element: <IndivisualAgent /> },
+    { path: "/agents/:id/demo", element: <Demo /> },
     { path: "/contactus", element: <ContactUs /> },
     { path: "*", element: <Navigate to={"/agents"} /> },
   ];

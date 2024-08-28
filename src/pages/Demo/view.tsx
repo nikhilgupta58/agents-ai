@@ -1,16 +1,29 @@
+import { useEffect, useState } from "react";
 import { Helmet } from "react-helmet";
-import ReactMarkdown from "react-markdown";
-import { useNavigate, useSearchParams } from "react-router-dom";
+import { useSearchParams } from "react-router-dom";
 import Spinner from "../../components/Spinner";
 import { IAgent } from "../../hooks/useAgents";
 import useAgentWithStep from "../../hooks/useAgentWithStep";
 import ContactUs from "../ContactUs/view";
 
-export default function IndivisualAgent() {
+export default function Demo() {
   const { data }: { data: IAgent | null } = useAgentWithStep();
-  const navigate = useNavigate();
-  const [searchParams] = useSearchParams();
-  const queryValue = searchParams.get("name");
+  const [searchParams, setSearchParams] = useSearchParams();
+  const [inputValue, setInputValue] = useState("");
+
+  useEffect(() => {
+    const queryValue = searchParams.get("query");
+    if (queryValue) {
+      setInputValue(queryValue);
+    }
+  }, [searchParams]);
+
+  const handleSubmit = () => {
+    const newParams = new URLSearchParams(searchParams);
+    newParams.set("query", inputValue);
+    setSearchParams(newParams);
+  };
+
   if (!data) {
     return (
       <div className="flex justify-center items-center h-screen">
@@ -38,17 +51,9 @@ export default function IndivisualAgent() {
             className="w-32 h-32 md:w-48 md:h-48 rounded-full object-cover shadow-lg"
           />
           <div className="flex-1">
-            <div className="flex flex-col md:flex-row gap-2 md:gap-4 md:items-center">
-              <h1 className="text-3xl md:text-4xl font-bold text-secondary-dark">
-                {data.title}
-              </h1>
-              <button
-                onClick={() => navigate(`demo?name=${queryValue}`)}
-                className="px-2 py-1 w-fit rounded-md bg-secondary-dark text-primary-dark hover:brightness-110 transition-all"
-              >
-                Try Now 🔗
-              </button>
-            </div>
+            <h1 className="text-3xl md:text-4xl font-bold text-secondary-dark">
+              {data.title}
+            </h1>
             <p className="text-lg text-secondary-light mt-2">{data.name}</p>
             <h2 className="text-md text-secondary-light mt-4">
               {data.description}
@@ -74,33 +79,25 @@ export default function IndivisualAgent() {
 
         <div className="mt-12">
           <h2 className="text-2xl font-semibold text-secondary-dark mb-6">
-            Steps
+            Demo
           </h2>
           <div className="space-y-8">
-            {data.steps?.map((step, index) => (
-              <div
-                key={step.id}
-                className="p-6 bg-white rounded-lg shadow-lg border-l-4 border-primary-light"
-              >
-                <h3 className="text-xl font-bold text-primary-dark">
-                  Step {index + 1}
-                </h3>
-                <ReactMarkdown className="prose prose-lg text-gray-700 mt-4">
-                  {step.short_desc}
-                </ReactMarkdown>
-              </div>
-            ))}
+            <input
+              type="text"
+              placeholder="Enter your text"
+              value={inputValue}
+              onChange={(e) => setInputValue(e.target.value)}
+              className="w-full p-3 border border-primary-light text-black rounded-md focus:outline-none focus:border-primary-dark"
+            />
+            <button
+              onClick={handleSubmit}
+              className="px-6 py-3 border-[1px] bg-primary text-secondary-dark font-semibold rounded-md hover:bg-primary-dark transition-colors"
+            >
+              Submit
+            </button>
           </div>
         </div>
 
-        <div className="mt-12 text-center">
-          <button
-            onClick={() => navigate(-1)}
-            className="bg-primary-light text-white font-semibold py-2 px-6 rounded-full shadow-md hover:bg-primary-dark transition duration-300"
-          >
-            Back to Agents
-          </button>
-        </div>
         <ContactUs className="md:p-0 p-0 min-h-0 mt-0" agentName={data?.name} />
       </div>
     </>
