@@ -80,7 +80,7 @@ export default function Demo() {
                         <h3 className="text-xl font-bold text-primary-dark mb-4">
                           {item.search_keyword}
                         </h3>
-                        <p className="text-primary-dark mb-4">{item.text}</p>
+                        <p className="text-primary-dark mb-4 text-wrap break-words">{item.text}</p>
                         <a
                           href={item.url}
                           target="_blank"
