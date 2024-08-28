@@ -35,7 +35,7 @@ export default function Demo() {
       <Helmet>
         <title>AI Automation Agents Platform: {name}</title>
       </Helmet>
-      <div className="max-w-5xl mx-auto py-12 px-6 md:px-12 md:w-[50dvw]">
+      <div className="max-w-5xl mx-auto py-12 px-6 md:px-12 md:w-[80dvw] lg:w-[70dvw] xl:w-[50dvw]">
         <div className="flex flex-col md:flex-row items-center gap-8">
           <div className="flex-1">
             <h1 className="text-3xl md:text-4xl font-bold text-secondary-dark">
@@ -69,7 +69,31 @@ export default function Demo() {
                 <Spinner />
               </div>
             ) : (
-              <></> // HERE
+              <>
+                {demoData && (
+                  <div className="grid grid-cols-1 gap-6">
+                    {demoData.map((item: any, index: number) => (
+                      <div
+                        key={index}
+                        className="bg-secondary-light p-6 rounded-md shadow-md"
+                      >
+                        <h3 className="text-xl font-bold text-primary-dark mb-4">
+                          {item.search_keyword}
+                        </h3>
+                        <p className="text-primary-dark mb-4">{item.text}</p>
+                        <a
+                          href={item.url}
+                          target="_blank"
+                          rel="noopener noreferrer"
+                          className="text-primary-light underline hover:text-primary-dark"
+                        >
+                          Read more
+                        </a>
+                      </div>
+                    ))}
+                  </div>
+                )}
+              </>
             )}
           </div>
         </div>
